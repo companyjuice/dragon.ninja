@@ -1,0 +1,45 @@
+{
+  "name": "dragon.ninja",
+  "version": "0.1.0",
+  "description": "Node + React + Flux + Alt : multiple composable app environments : https://dragon.ninja",
+  "license": "GPL-3.0+",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martymcgee/dragon.ninja.git"
+  },
+  "authors": [
+    "Marty McGee <marty@companyjuice.com>"
+  ],
+  "scripts": {
+    "build": "webpack --progress --colors",
+    "start": "webpack-dev-server --content-base build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "alt": "^0.16.10",
+    "classnames": "^2.1.2",
+    "debug": "^2.2.0",
+    "energize": "git://github.com/martymcgee/energize.git#b99ebaf678f1ffc4bd07281f9ab4b74dc199965e",
+    "es6-shim": "^0.32.2",
+    "jquery": "^2.1.4",
+    "materialize-css": "^0.96.1",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "whatwg-fetch": "^0.9.0"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^2.0.0",
+    "babel-core": "^5.6.4",
+    "babel-loader": "^5.1.4",
+    "css-loader": "^0.15.1",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^1.5.2",
+    "node-libs-browser": "^0.5.2",
+    "node-sass": "^3.2.0",
+    "react-hot-loader": "^1.2.7",
+    "sass-loader": "^1.0.2",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0"
+  }
+}

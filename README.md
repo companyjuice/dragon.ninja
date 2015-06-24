@@ -1,16 +1,15 @@
-# dragon.ninja
+# -||- dragon.ninja
 
 Node + React + Flux + Alt : multiple composable app environments : https://dragon.ninja
 
-## Install and run
+## Install, run build, start
 
 ```
 npm install
+npm run build
 npm start
 
-[other options]
-npm run build
+[other scripts]
 npm run clean
 npm run test
-open build/index.html
 ```

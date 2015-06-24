@@ -1,0 +1,46 @@
+/* Nav/style.scss -||- */
+
+.brand-logo {
+  width: 200px;/*60px;*/
+  height: 60px;
+  /*background: url('../../../assets/logo.png') no-repeat;*/
+}
+
+/* override materialize.min.css */
+
+@media only screen and (min-width: 601px){
+	nav, 
+	nav .nav-wrapper i, 
+	nav a.button-collapse, 
+	nav a.button-collapse i {
+	  height: 60px;
+	  line-height: 60px;
+	}
+}
+
+.grey.darken-3 {
+  background-color: #222 !important;
+}
+
+.btn, 
+.btn-large {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #333;
+  text-align: center;
+  letter-spacing: .5px;
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  -o-transition: .2s ease-out;
+  -ms-transition: .2s ease-out;
+  transition: .2s ease-out;
+  cursor: pointer;
+}
+.btn:hover, 
+.btn-large:hover {
+  background-color: #80bd01;
+}
+
+/* end override materialize.min.css */
+
+/* end file -||- */
