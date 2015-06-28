@@ -10,7 +10,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://dragon.ninja:7777',
     'webpack/hot/dev-server',
-    './scripts/bootstrap.jsx'
+    './src/bootstrap.jsx'
   ],
 
   externals: {
@@ -19,12 +19,12 @@ module.exports = {
 
   output: {
     filename: 'ninja.js',
-    chunkFilename: '[chunkhash].js',
+    chunkFilename: 'ninja-[chunkhash].js',
     path: 'build'
   },
 
   devServer: {
-    info: false,
+    info: true,
     hot: true,
     inline: false,
     port: 7777,
@@ -38,6 +38,15 @@ module.exports = {
       progress: true
     }
   },
+
+  plugins: [
+    new HtmlPlugin({
+      pkg      : require('./package.json'),
+      template : './src/index.html'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
 
   resolve: {
     root: [
@@ -67,14 +76,5 @@ module.exports = {
         exclude: [/node_modules/]
       }
     ]
-  },
-
-  plugins: [
-    new HtmlPlugin({
-      pkg      : require('./package.json'),
-      template : './index.html'
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ]
+  }
 };

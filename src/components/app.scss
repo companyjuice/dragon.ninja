@@ -1,0 +1,52 @@
+/* -||- dragon.ninja.css -||- */
+
+
+#ninja {
+  padding: 0 10px;
+  margin-bottom: 10px;
+  border: 0px solid #80bd01;
+}
+
+#react {
+  padding: 0 10px;
+  margin-bottom: 10px;
+  border: 0px solid #80bd01;
+}
+
+body {
+  background-color: #111;
+  color: #ddd;
+  font-family: 'Muli', sans-serif, arial;
+  margin-bottom: 60px + 20px;
+}
+
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 16px;
+}
+h4 {
+  font-size: 14px;
+}
+
+footer {
+  float: left;
+  clear: both;
+}
+
+
+/* todoapp.ninja.css */
+/**
+ * We are not changing from display:none, but rather re-rendering instead.
+ * Therefore this needs to be displayed normally by default.
+ */
+#todo-list li .edit {
+  display: inline;
+}
+
+
+/* -||- end file -||- */
