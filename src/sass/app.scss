@@ -1,16 +1,14 @@
-/* -||- dragon.ninja.css -||- */
-
+/* -||- dragon.ninja sass/app.scss -||- */
 
 #ninja {
   padding: 0 10px;
   margin-bottom: 10px;
-  border: 0px solid #80bd01;
+  border: 1px solid #80bd01;
 }
-
 #react {
   padding: 0 10px;
   margin-bottom: 10px;
-  border: 0px solid #80bd01;
+  border: 1px solid #80bd01;
 }
 
 body {
@@ -36,6 +34,44 @@ h4 {
 footer {
   float: left;
   clear: both;
+}
+
+.nav-wrapper ul li {
+  display: inline;
+  float: right;
+}
+
+
+/* docs/main.css */
+
+/* custom font icons */
+/* @import "../www/css/font-icons/style.css"; */
+
+/* hightlight.js for syntax highlighting */
+/* @import "../www/css/github.css"; */
+
+a {
+  color: #80bd01; //limeA400
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+html {
+  font-family: 'Muli', sans-serif;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+
+/* Used in our inline-styles.jsx as an example */
+.muidocs-checkbox-example { 
+  border: 2px solid #FF9800;
+  background-color: #4CAF50;
 }
 
 

@@ -1,140 +1,119 @@
-/* -||- master.jsx -||- */
+/* -||- app/components/master.jsx -||- */
 
-import React from 'react';
-import Router, {RouteHandler} from 'react-router';
+/* from mui docs */
 
-import Nav from './layouts/nav';
-import Banner from './layouts/banner';
-import Status from './layouts/status';
+let React = require('react');
+let Router = require('react-router');
+let AppLeftNav = require('./app-left-nav');
+let FullWidthSection = require('./full-width-section');
+let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('material-ui');
 
+let RouteHandler = Router.RouteHandler;
+let { Colors, Spacing, Typography } = Styles;
+let ThemeManager = new Styles.ThemeManager();
 
-// Material UI 
-// :: http://material-ui.com/#/get-started
-let mui = require('material-ui');
-let ThemeManager = new mui.Styles.ThemeManager();
-// needed for onTouchTap, not needed when react 1.0 released
-//var injectTapEventPlugin = require("react-tap-event-plugin");
-let injectTapEventPlugin = require("react-tap-event-plugin");
-// https://github.com/zilverline/react-tap-event-plugin
-injectTapEventPlugin();
+//let Spacing = require('../spacing');
 
 
-let AppCanvas = mui.AppCanvas;
-let AppBar = mui.AppBar;
-let LeftNav = mui.LeftNav;
+class Master extends React.Component {
 
-let menuItems = [
-  // inject:menuitems
-  { payload: 'root', text: '-||- ' },
-  { payload: 'base', text: '-||- Base' },
-  { payload: 'home', text: '-||- Home' },
-  { payload: 'about', text: '-||- About' },
-  { payload: 'rooms', text: '-||- Rooms' },
-  // endinject
-];
-
-let titles = {
-  // inject:titles
-  '/root': 'Root -||-',
-  '/base': 'Base -||-',
-  '/home': 'Home -||-',
-  '/about': 'About -||-',
-  '/rooms': 'Rooms -||-',
-  // endinject
-};
-
-
-// -||- React Class [RC] (of React Elements [RE])
-// -||- Sub-Component [SC]
-let NinjaNav = React.createClass({
-
-	// mixins -??-
-  mixins: [Router.Navigation],
-
-
-  toggle:function () {
-    this.refs.leftNav.toggle();
-  },
-
-  close: function () {
-    this.refs.leftNav.close()
-  },
-
-  _onLeftNavChange: function(e, selectedIndex, menuItem) {
-    this.transitionTo(menuItem.payload);
-    this.refs.leftNav.close();
-  },
-
-  render: function () {
-    // Optional: add a header to the left navigation bar, by setting
-    // the `LeftNav`'s `header` property to a React component, like so:
-    //   header={<div className='logo'>Company Juice</div>}
-    return (
-      <LeftNav
-        ref="leftNav"
-        docked={true}
-        header={<div className='brand-logo'></div>}
-        isInitiallyOpen={true}
-        menuItems={this.props.menuItems}
-        onClick={this._onLeftNavChange}
-        onChange={this._onLeftNavChange} />
-    );
+  constructor() {
+    super();
+    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
   }
-});
 
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    }
+  }
 
-let Master = React.createClass({
+  componentWillMount() {
+  	// set theme type (LIGHT or DARK)
+  	ThemeManager.setTheme(ThemeManager.types.DARK);
+  	// set theme component overrides
+    ThemeManager.setComponentThemes({
+      appBar: {
+        color: Colors.grey900,
+        textColor: Colors.darkWhite,
+        height: Spacing.desktopKeylineIncrement
+      }
+    });
+  }
 
-	// mixins -??-
-  mixins: [Router.State],
+  getStyles() {
+    let darkWhite = Colors.darkWhite;
+    return {
+      footer: {
+        backgroundColor: Colors.grey900,
+        textAlign: 'center'
+      },
+      a: {
+        color: darkWhite
+      },
+      p: {
+        margin: '0 auto',
+        padding: '0',
+        color: Colors.lightWhite,
+        maxWidth: '335px'
+      },
+      iconButton: {
+        color: darkWhite
+      }
+    };
+  }
 
-    
-  /* for mui ThemeManager */
-  childContextTypes: {
-      muiTheme: React.PropTypes.object
-  },
+  render() {
+    let styles = this.getStyles();
+    let title =
+      this.context.router.isActive('get-started') ? 'Get Started' :
+      this.context.router.isActive('customization') ? 'Customization' :
+      this.context.router.isActive('components') ? 'Components' : '';
 
-  getChildContext: function() {
-      return {
-          muiTheme: ThemeManager.getCurrentTheme()
-      };
-  },
-  /* end for mui ThemeManager */
+    let githubButton = (
+      <IconButton
+        iconStyle={styles.iconButton}
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/companyjuice/material-ui"
+        linkButton={true} />
+    );
 
-
-  // for AppBar
-  _onMenuIconButtonTouchTap: function () {
-    this.refs.leftNav.toggle();
-  },
-
-  // -||-
-  render: function () {
     return (
-      <AppCanvas predefinedLayout={1}>
+      <AppCanvas>
 
         <AppBar
-          title={titles[this.getPath()]}
-          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
-          zDepth={0}>
-        </AppBar>
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
+          title={title}
+          zDepth={0}
+          iconElementRight={githubButton}/>
 
-        <NinjaNav 
-        	ref='leftNav' 
-        	menuItems={menuItems} />
+        <AppLeftNav ref="leftNav" />
 
-        <main>
-          <div className='mui-app-content-canvas'>
-            <RouteHandler />
-          </div>
-        </main>
+        <RouteHandler />
 
-        <Banner />
-        <Status />
-        <Nav />
+        <FullWidthSection style={styles.footer}>
+          <p style={styles.p}>
+            Hand fed with love by the dragoneers at <a style={styles.a} href="http://companyjuice.com">Company Juice</a> and our
+            ninja <a style={styles.a} href="https://github.com/companyjuice/dragon.ninja/graphs/contributors">contributors</a>.
+          </p>
+          {githubButton}
+        </FullWidthSection>
 
       </AppCanvas>
     );
   }
-});
+
+  _onLeftIconButtonTouchTap() {
+    this.refs.leftNav.toggle();
+  }
+}
+
+Master.contextTypes = {
+  router: React.PropTypes.func
+};
+
+Master.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = Master;

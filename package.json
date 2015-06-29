@@ -1,14 +1,15 @@
 {
   "name": "dragon.ninja",
-  "version": "0.2.1",
-  "description": "Node + React + Flux + Alt + Material UI :: multiple composable app environments :: https://dragon.ninja",
+  "version": "0.2.2",
+  "description": "Node + React + Flux + Alt + Material UI = multiple composable app environments -||- https://dragon.ninja",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/martymcgee/dragon.ninja.git"
+    "url": "https://github.com/companyjuice/dragon.ninja.git"
   },
   "authors": [
-    "Marty McGee <marty@companyjuice.com>"
+    "Marty McGee <marty@companyjuice.com>",
+    "Team Juice <support@companyjuice.com>"
   ],
   "scripts": {
     "build": "webpack --progress --colors",

@@ -29,8 +29,8 @@ let Base = React.createClass({
 
     let containerStyle = {
       textAlign: 'center',
-      paddingTop: '80px',
-      paddingBottom: '80px'
+      paddingTop: '100px',
+      paddingBottom: '100px'
     };
 
     let standardActions = [
@@ -42,7 +42,7 @@ let Base = React.createClass({
         <Dialog
           title="Secret Ninja Password"
           actions={standardActions}
-          ref="ninjaSecretPasswordDialog">
+          ref="secretPasswordDialog">
 
           ____-||-____<br/>
 					-|•|-::-|•|-<br/>
@@ -53,6 +53,14 @@ let Base = React.createClass({
           trackdragon
 
         </Dialog>
+        <Dialog
+          title="Get Started"
+          actions={standardActions}
+          ref="getStartedDialog">
+
+          TODO: 
+
+        </Dialog>
 		    <div>
 		    	<h1 ref="title">Welcome, ninja.</h1>
 		    	<p>	I am a `trackdragon` and `dragon` is my name.<br/>
@@ -60,15 +68,19 @@ let Base = React.createClass({
               I will call you `ninja`.
 		    	</p>
 					<p>Let us create together for much win !!</p>
-					<RaisedButton label="-||- Secret Ninja Password" onTouchTap={this._handleTouchTap} />
-          <RaisedButton label="Get Started |>" primary={true} />
+					<RaisedButton label="-||- Secret Ninja Password" onTouchTap={this._handleSecretPasswordTouchTap} />
+          <RaisedButton label="Get Started |>" primary={true} onTouchTap={this._handleGetStartedTouchTap} />
       	</div>
 		  </div>
     );
   },
 
-  _handleTouchTap() {
-    this.refs.ninjaSecretPasswordDialog.show();
+  _handleSecretPasswordTouchTap() {
+    this.refs.secretPasswordDialog.show();
+  },
+
+  _handleGetStartedTouchTap() {
+    this.refs.getStartedDialog.show();
   }
 
 });
