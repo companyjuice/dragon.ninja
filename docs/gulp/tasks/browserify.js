@@ -34,7 +34,7 @@ gulp.task('browserify', ['eslint'], function(callback) {
       // Enable source maps, since they are only loaded on demand there is no need to disable
       debug: true,
       // Material-UI Source path
-      paths: ['../src']
+      paths: ['./material-ui/src']
 
     });
 
@@ -59,7 +59,7 @@ gulp.task('browserify', ['eslint'], function(callback) {
         .on('end', reportFinished);
     };
 
-    bundler.require('../src/index.js', {expose: 'material-ui'});
+    bundler.require('./material-ui/src/index.js', {expose: 'material-ui'});
     bundler.transform(babelify.configure({stage: 1}));
 
     if (global.isWatching) {

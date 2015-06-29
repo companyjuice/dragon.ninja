@@ -1,7 +1,7 @@
 {
   "name": "dragon.ninja",
-  "version": "0.2.0",
-  "description": "Node + React + Flux + Alt + Material UI : multiple composable app environments : https://dragon.ninja",
+  "version": "0.2.1",
+  "description": "Node + React + Flux + Alt + Material UI :: multiple composable app environments :: https://dragon.ninja",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "webpack --progress --colors",
     "start": "webpack-dev-server --content-base build",
+    "start1": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -20,15 +21,20 @@
     "classnames": "^2.1.2",
     "debug": "^2.2.0",
     "es6-shim": "^0.32.2",
-    "material-ui": "^0.9.2",
+      "material-ui": "^0.9.2",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
-    "whatwg-fetch": "^0.9.0"
+    "whatwg-fetch": "^0.9.0",
+
+      "highlight.js": "^8.4.0",
+
+      "react-webaudio": "^0.2.0-EXPERIMENTAL"
+
   },
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",
-    "babel-core": "^5.6.4",
-    "babel-loader": "^5.1.4",
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.2",
     "css-loader": "^0.15.1",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.5.2",
@@ -37,7 +43,26 @@
     "react-hot-loader": "^1.2.7",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
-    "webpack": "^1.9.11",
-    "webpack-dev-server": "^1.9.0"
+    "webpack": "^1.10.0",
+    "webpack-dev-server": "^1.10.0",
+
+      "babel-eslint": "^3.1.19",
+      "eslint": "^0.24.0",
+      "eslint-plugin-react": "^2.5.2",
+
+      "babelify": "^6.1.1",
+      "browser-sync": "^1.8.1",
+      "browserify": "^10.2.0",
+      "gulp": "^3.8.10",
+      "gulp-notify": "^2.1.0",
+      "gulp-shell": "^0.4.1",
+      "gulp-sourcemaps": "1.5.2",
+      "gulp-util": "^3.0.1",
+      "pretty-hrtime": "^0.2.2",
+      "require-dir": "^0.1.0",
+      "underscore": "^1.7.0",
+      "vinyl-buffer": "^1.0.0",
+      "vinyl-source-stream": "^1.0.0",
+      "watchify": "^2.2.1"
   }
 }

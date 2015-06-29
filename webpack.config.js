@@ -10,7 +10,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://dragon.ninja:7777',
     'webpack/hot/dev-server',
-    './src/bootstrap.jsx'
+    './src/app/app.jsx'
   ],
 
   externals: {
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   devServer: {
-    info: true,
+    info: false,
     hot: true,
     inline: false,
     port: 7777,
@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new HtmlPlugin({
       pkg      : require('./package.json'),
-      template : './src/index.html'
+      template : './src/www/index.html'
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()

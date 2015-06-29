@@ -10,7 +10,7 @@ import {config} from '../../../shared';
 //var $ = jQuery;
 
 // include Status styles
-require('./styles.scss');
+require('./status.scss');
 
 export default class Status extends React.Component {
 
@@ -26,7 +26,7 @@ export default class Status extends React.Component {
 	      <div className={classNames('status', config.theme)}>
 	      	<div className={classNames('col', 's6')}>
 	      		<div className={classNames('container', 'left-align')}>
-	      			-||- <a href="https://github.com/martymcgee/dragon.ninja" target="_blank">dragon.ninja</a>
+	      			-||- <a href="https://github.com/companyjuice/dragon.ninja" target="_blank">dragon.ninja</a>
 		        </div>
 	      	</div>
 	      	<div className={classNames('col', 's6')}>

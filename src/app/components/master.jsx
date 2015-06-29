@@ -1,100 +1,140 @@
-let React = require('react');
-let Router = require('react-router');
-let AppLeftNav = require('./app-left-nav');
-let FullWidthSection = require('./full-width-section');
-let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('material-ui');
+/* -||- master.jsx -||- */
 
-let RouteHandler = Router.RouteHandler;
-let { Colors, Typography } = Styles;
-let ThemeManager = new Styles.ThemeManager();
+import React from 'react';
+import Router, {RouteHandler} from 'react-router';
+
+import Nav from './layouts/nav';
+import Banner from './layouts/banner';
+import Status from './layouts/status';
 
 
-class Master extends React.Component {
+// Material UI 
+// :: http://material-ui.com/#/get-started
+let mui = require('material-ui');
+let ThemeManager = new mui.Styles.ThemeManager();
+// needed for onTouchTap, not needed when react 1.0 released
+//var injectTapEventPlugin = require("react-tap-event-plugin");
+let injectTapEventPlugin = require("react-tap-event-plugin");
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
-  constructor() {
-    super();
-    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
-  }
 
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
-  }
+let AppCanvas = mui.AppCanvas;
+let AppBar = mui.AppBar;
+let LeftNav = mui.LeftNav;
 
-  getStyles() {
-    let darkWhite = Colors.darkWhite;
-    return {
-      footer: {
-        backgroundColor: Colors.grey900,
-        textAlign: 'center'
-      },
-      a: {
-        color: darkWhite
-      },
-      p: {
-        margin: '0 auto',
-        padding: '0',
-        color: Colors.lightWhite,
-        maxWidth: '335px'
-      },
-      iconButton: {
-        color: darkWhite
-      }
-    };
-  }
+let menuItems = [
+  // inject:menuitems
+  { payload: 'root', text: '-||- ' },
+  { payload: 'base', text: '-||- Base' },
+  { payload: 'home', text: '-||- Home' },
+  { payload: 'about', text: '-||- About' },
+  { payload: 'rooms', text: '-||- Rooms' },
+  // endinject
+];
 
-  render() {
-    let styles = this.getStyles();
-    let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
+let titles = {
+  // inject:titles
+  '/root': 'Root -||-',
+  '/base': 'Base -||-',
+  '/home': 'Home -||-',
+  '/about': 'About -||-',
+  '/rooms': 'Rooms -||-',
+  // endinject
+};
 
-    let githubButton = (
-      <IconButton
-        iconStyle={styles.iconButton}
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true} />
-    );
 
+// -||- React Class [RC] (of React Elements [RE])
+// -||- Sub-Component [SC]
+let NinjaNav = React.createClass({
+
+	// mixins -??-
+  mixins: [Router.Navigation],
+
+
+  toggle:function () {
+    this.refs.leftNav.toggle();
+  },
+
+  close: function () {
+    this.refs.leftNav.close()
+  },
+
+  _onLeftNavChange: function(e, selectedIndex, menuItem) {
+    this.transitionTo(menuItem.payload);
+    this.refs.leftNav.close();
+  },
+
+  render: function () {
+    // Optional: add a header to the left navigation bar, by setting
+    // the `LeftNav`'s `header` property to a React component, like so:
+    //   header={<div className='logo'>Company Juice</div>}
     return (
-      <AppCanvas>
+      <LeftNav
+        ref="leftNav"
+        docked={true}
+        header={<div className='brand-logo'></div>}
+        isInitiallyOpen={true}
+        menuItems={this.props.menuItems}
+        onClick={this._onLeftNavChange}
+        onChange={this._onLeftNavChange} />
+    );
+  }
+});
+
+
+let Master = React.createClass({
+
+	// mixins -??-
+  mixins: [Router.State],
+
+    
+  /* for mui ThemeManager */
+  childContextTypes: {
+      muiTheme: React.PropTypes.object
+  },
+
+  getChildContext: function() {
+      return {
+          muiTheme: ThemeManager.getCurrentTheme()
+      };
+  },
+  /* end for mui ThemeManager */
+
+
+  // for AppBar
+  _onMenuIconButtonTouchTap: function () {
+    this.refs.leftNav.toggle();
+  },
+
+  // -||-
+  render: function () {
+    return (
+      <AppCanvas predefinedLayout={1}>
 
         <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
-          title={title}
-          zDepth={0}
-          iconElementRight={githubButton}/>
+          title={titles[this.getPath()]}
+          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
+          zDepth={0}>
+        </AppBar>
 
-        <AppLeftNav ref="leftNav" />
+        <NinjaNav 
+        	ref='leftNav' 
+        	menuItems={menuItems} />
 
-        <RouteHandler />
+        <main>
+          <div className='mui-app-content-canvas'>
+            <RouteHandler />
+          </div>
+        </main>
 
-        <FullWidthSection style={styles.footer}>
-          <p style={styles.p}>
-            Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
-          </p>
-          {githubButton}
-        </FullWidthSection>
+        <Banner />
+        <Status />
+        <Nav />
 
       </AppCanvas>
     );
   }
-
-  _onLeftIconButtonTouchTap() {
-    this.refs.leftNav.toggle();
-  }
-}
-
-Master.contextTypes = {
-  router: React.PropTypes.func
-};
-
-Master.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
+});
 
 module.exports = Master;

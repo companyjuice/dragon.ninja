@@ -1,6 +1,6 @@
 var dest = './build';
 var src = './src';
-var mui = '../src';
+var mui = '../node_modules/material-ui/src';
 
 module.exports = {
   browserSync: {
@@ -27,7 +27,7 @@ module.exports = {
   },
   browserify: {
     // Enable source maps
-    debug: true,
+    debug: false,
     extensions: [ '.jsx' ],
     // A separate bundle will be generated for each
     // bundle config in the list below
