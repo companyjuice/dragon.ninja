@@ -8,7 +8,7 @@ import Router, {HistoryLocation} from 'react-router';
 import {main} from './app-routes';
 
 
-require('../../assets/favicon.ico');
+require('../www/favicon.ico');
 require('../sass/app.scss');
 
 

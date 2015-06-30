@@ -74,7 +74,7 @@ class Master extends React.Component {
       <IconButton
         iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/companyjuice/material-ui"
+        href="https://github.com/companyjuice/dragon.ninja"
         linkButton={true} />
     );
 

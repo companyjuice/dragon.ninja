@@ -1,6 +1,6 @@
 {
   "name": "dragon.ninja",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Node + React + Flux + Alt + Material UI = multiple composable app environments -||- https://dragon.ninja",
   "license": "MIT",
   "repository": {
